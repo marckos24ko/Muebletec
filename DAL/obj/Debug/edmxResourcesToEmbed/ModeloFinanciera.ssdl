@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ModeloFinanciera.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModeloFinancieraStoreContainer">
+    <EntitySet Name="Clientes" EntityType="ModeloFinanciera.Store.Clientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Creditos" EntityType="ModeloFinanciera.Store.Creditos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Recibos" EntityType="ModeloFinanciera.Store.Recibos" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ClienteCredito" Association="ModeloFinanciera.Store.ClienteCredito">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Credito" EntitySet="Creditos" />
+    </AssociationSet>
+    <AssociationSet Name="CreditoRecibo" Association="ModeloFinanciera.Store.CreditoRecibo">
+      <End Role="Credito" EntitySet="Creditos" />
+      <End Role="Recibo" EntitySet="Recibos" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteRecibo" Association="ModeloFinanciera.Store.ClienteRecibo">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Recibo" EntitySet="Recibos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Dni" Type="int" Nullable="false" />
+    <Property Name="DireccionComercial" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DireccionParticular" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Celular" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumeroCliente" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Creditos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Nullable="false" />
+    <Property Name="FechaEmision" Type="datetime" Nullable="false" />
+    <Property Name="CantidadCuotas" Type="int" Nullable="false" />
+    <Property Name="MontoCuota" Type="decimal" Nullable="false" />
+    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TotalAbonado" Type="decimal" Nullable="false" />
+    <Property Name="ClienteId" Type="bigint" Nullable="false" />
+    <Property Name="FechaCancelacion" Type="datetime" Nullable="false" />
+    <Property Name="CodigoCredito" Type="int" Nullable="false" />
+    <Property Name="Interes" Type="int" Nullable="true" />
+    <Property Name="TipoCredito" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Refinanciado" Type="bit" Nullable="true" />
+    <Property Name="Extension" Type="bit" Nullable="true" />
+    <Property Name="CodigoCreditoBase" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Recibos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="MontoCredito" Type="decimal" Nullable="false" />
+    <Property Name="NumeroCuota" Type="int" Nullable="false" />
+    <Property Name="CuotasPendiente" Type="int" Nullable="false" />
+    <Property Name="MontoCuota" Type="decimal" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Nullable="false" />
+    <Property Name="UltimoPago" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Atraso" Type="decimal" Nullable="false" />
+    <Property Name="Pagado" Type="decimal" Nullable="false" />
+    <Property Name="FechaPago" Type="datetime" Nullable="false" />
+    <Property Name="Pago" Type="decimal" Nullable="false" />
+    <Property Name="CreditoId" Type="bigint" Nullable="false" />
+    <Property Name="ClienteId" Type="bigint" Nullable="false" />
+    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="ClienteCredito">
+    <End Role="Cliente" Type="ModeloFinanciera.Store.Clientes" Multiplicity="1" />
+    <End Role="Credito" Type="ModeloFinanciera.Store.Creditos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Credito">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CreditoRecibo">
+    <End Role="Credito" Type="ModeloFinanciera.Store.Creditos" Multiplicity="1" />
+    <End Role="Recibo" Type="ModeloFinanciera.Store.Recibos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Credito">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recibo">
+        <PropertyRef Name="CreditoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteRecibo">
+    <End Role="Cliente" Type="ModeloFinanciera.Store.Clientes" Multiplicity="1" />
+    <End Role="Recibo" Type="ModeloFinanciera.Store.Recibos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recibo">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

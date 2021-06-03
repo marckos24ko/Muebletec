@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModeloFinanciera.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModeloFinancieraStoreContainer">
+    <EntitySet Name="Clientes" EntityType="ModeloFinanciera.Store.Clientes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Creditos" EntityType="ModeloFinanciera.Store.Creditos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Recibos" EntityType="ModeloFinanciera.Store.Recibos" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ClienteCredito" Association="ModeloFinanciera.Store.ClienteCredito">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Credito" EntitySet="Creditos" />
+    </AssociationSet>
+    <AssociationSet Name="CreditoRecibo" Association="ModeloFinanciera.Store.CreditoRecibo">
+      <End Role="Credito" EntitySet="Creditos" />
+      <End Role="Recibo" EntitySet="Recibos" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteRecibo" Association="ModeloFinanciera.Store.ClienteRecibo">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Recibo" EntitySet="Recibos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Dni" Type="int" Nullable="false" />
+    <Property Name="DireccionComercial" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DireccionParticular" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Celular" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumeroCliente" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Creditos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Monto" Type="decimal" Nullable="false" />
+    <Property Name="FechaEmision" Type="datetime" Nullable="false" />
+    <Property Name="CantidadCuotas" Type="int" Nullable="false" />
+    <Property Name="MontoCuota" Type="decimal" Nullable="false" />
+    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TotalAbonado" Type="decimal" Nullable="false" />
+    <Property Name="ClienteId" Type="bigint" Nullable="false" />
+    <Property Name="FechaCancelacion" Type="datetime" Nullable="false" />
+    <Property Name="CodigoCredito" Type="int" Nullable="false" />
+    <Property Name="Interes" Type="int" Nullable="true" />
+    <Property Name="TipoCredito" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Refinanciado" Type="bit" Nullable="true" />
+    <Property Name="Extension" Type="bit" Nullable="true" />
+    <Property Name="CodigoCreditoBase" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Recibos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="MontoCredito" Type="decimal" Nullable="false" />
+    <Property Name="NumeroCuota" Type="int" Nullable="false" />
+    <Property Name="CuotasPendiente" Type="int" Nullable="false" />
+    <Property Name="MontoCuota" Type="decimal" Nullable="false" />
+    <Property Name="Saldo" Type="decimal" Nullable="false" />
+    <Property Name="UltimoPago" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Atraso" Type="decimal" Nullable="false" />
+    <Property Name="Pagado" Type="decimal" Nullable="false" />
+    <Property Name="FechaPago" Type="datetime" Nullable="false" />
+    <Property Name="Pago" Type="decimal" Nullable="false" />
+    <Property Name="CreditoId" Type="bigint" Nullable="false" />
+    <Property Name="ClienteId" Type="bigint" Nullable="false" />
+    <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="ClienteCredito">
+    <End Role="Cliente" Type="ModeloFinanciera.Store.Clientes" Multiplicity="1" />
+    <End Role="Credito" Type="ModeloFinanciera.Store.Creditos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Credito">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CreditoRecibo">
+    <End Role="Credito" Type="ModeloFinanciera.Store.Creditos" Multiplicity="1" />
+    <End Role="Recibo" Type="ModeloFinanciera.Store.Recibos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Credito">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recibo">
+        <PropertyRef Name="CreditoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteRecibo">
+    <End Role="Cliente" Type="ModeloFinanciera.Store.Clientes" Multiplicity="1" />
+    <End Role="Recibo" Type="ModeloFinanciera.Store.Recibos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recibo">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModeloFinanciera" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModeloFinancieraContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="ModeloFinanciera.Cliente" />
+          <EntitySet Name="Creditos" EntityType="ModeloFinanciera.Credito" />
+          <EntitySet Name="Recibos" EntityType="ModeloFinanciera.Recibo" />
+          <AssociationSet Name="ClienteCredito" Association="ModeloFinanciera.ClienteCredito">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Credito" EntitySet="Creditos" />
+          </AssociationSet>
+          <AssociationSet Name="CreditoRecibo" Association="ModeloFinanciera.CreditoRecibo">
+            <End Role="Credito" EntitySet="Creditos" />
+            <End Role="Recibo" EntitySet="Recibos" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteRecibo" Association="ModeloFinanciera.ClienteRecibo">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Recibo" EntitySet="Recibos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" />
+          <Property Name="Dni" Type="Int32" Nullable="false" />
+          <Property Name="DireccionComercial" Type="String" Nullable="false" />
+          <Property Name="DireccionParticular" Type="String" Nullable="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" />
+          <Property Name="Celular" Type="String" Nullable="false" />
+          <Property Name="NumeroCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Credito" Relationship="ModeloFinanciera.ClienteCredito" FromRole="Cliente" ToRole="Credito" />
+          <NavigationProperty Name="Recibo" Relationship="ModeloFinanciera.ClienteRecibo" FromRole="Cliente" ToRole="Recibo" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Credito">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
+          <Property Name="FechaEmision" Type="DateTime" Nullable="false" />
+          <Property Name="CantidadCuotas" Type="Int32" Nullable="false" />
+          <Property Name="MontoCuota" Type="Decimal" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" />
+          <Property Name="TotalAbonado" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="ModeloFinanciera.ClienteCredito" FromRole="Credito" ToRole="Cliente" />
+          <Property Name="ClienteId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Recibo" Relationship="ModeloFinanciera.CreditoRecibo" FromRole="Credito" ToRole="Recibo" />
+          <Property Name="FechaCancelacion" Type="DateTime" Nullable="false" />
+          <Property Name="CodigoCredito" Type="Int32" Nullable="false" />
+          <Property Name="Interes" Type="Int32" Nullable="true" />
+          <Property Name="TipoCredito" Type="String" Nullable="false" />
+          <Property Name="Refinanciado" Type="Boolean" Nullable="true" />
+          <Property Name="Extension" Type="Boolean" Nullable="true" />
+          <Property Name="CodigoCreditoBase" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Recibo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="MontoCredito" Type="Decimal" Nullable="false" />
+          <Property Name="NumeroCuota" Type="Int32" Nullable="false" />
+          <Property Name="CuotasPendiente" Type="Int32" Nullable="false" />
+          <Property Name="MontoCuota" Type="Decimal" Nullable="false" />
+          <Property Name="Saldo" Type="Decimal" Nullable="false" />
+          <Property Name="UltimoPago" Type="String" Nullable="false" />
+          <Property Name="Atraso" Type="Decimal" Nullable="false" />
+          <Property Name="Pagado" Type="Decimal" Nullable="false" />
+          <Property Name="FechaPago" Type="DateTime" Nullable="false" />
+          <Property Name="Pago" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="Credito" Relationship="ModeloFinanciera.CreditoRecibo" FromRole="Recibo" ToRole="Credito" />
+          <Property Name="CreditoId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="ModeloFinanciera.ClienteRecibo" FromRole="Recibo" ToRole="Cliente" />
+          <Property Name="ClienteId" Type="Int64" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="ClienteCredito">
+          <End Type="ModeloFinanciera.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="ModeloFinanciera.Credito" Role="Credito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Credito">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CreditoRecibo">
+          <End Type="ModeloFinanciera.Credito" Role="Credito" Multiplicity="1" />
+          <End Type="ModeloFinanciera.Recibo" Role="Recibo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credito">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recibo">
+              <PropertyRef Name="CreditoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClienteRecibo">
+          <End Type="ModeloFinanciera.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="ModeloFinanciera.Recibo" Role="Recibo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recibo">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModeloFinancieraStoreContainer" CdmEntityContainer="ModeloFinancieraContainer">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloFinanciera.Cliente)">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Dni" ColumnName="Dni" />
+          <ScalarProperty Name="DireccionComercial" ColumnName="DireccionComercial" />
+          <ScalarProperty Name="DireccionParticular" ColumnName="DireccionParticular" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Creditos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloFinanciera.Credito)">
+        <MappingFragment StoreEntitySet="Creditos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+          <ScalarProperty Name="CantidadCuotas" ColumnName="CantidadCuotas" />
+          <ScalarProperty Name="MontoCuota" ColumnName="MontoCuota" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="TotalAbonado" ColumnName="TotalAbonado" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="FechaCancelacion" ColumnName="FechaCancelacion" />
+          <ScalarProperty Name="CodigoCredito" ColumnName="CodigoCredito" />
+          <ScalarProperty Name="Interes" ColumnName="Interes" />
+          <ScalarProperty Name="TipoCredito" ColumnName="TipoCredito" />
+          <ScalarProperty Name="Refinanciado" ColumnName="Refinanciado" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="CodigoCreditoBase" ColumnName="CodigoCreditoBase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recibos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloFinanciera.Recibo)">
+        <MappingFragment StoreEntitySet="Recibos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+          <ScalarProperty Name="NumeroCuota" ColumnName="NumeroCuota" />
+          <ScalarProperty Name="CuotasPendiente" ColumnName="CuotasPendiente" />
+          <ScalarProperty Name="MontoCuota" ColumnName="MontoCuota" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="UltimoPago" ColumnName="UltimoPago" />
+          <ScalarProperty Name="Atraso" ColumnName="Atraso" />
+          <ScalarProperty Name="Pagado" ColumnName="Pagado" />
+          <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+          <ScalarProperty Name="Pago" ColumnName="Pago" />
+          <ScalarProperty Name="CreditoId" ColumnName="CreditoId" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

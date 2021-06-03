@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6BDD15B5-629C-4542-BD4D-361690D0E62C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Presentacion.Core</RootNamespace>
+    <AssemblyName>Presentacion.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clientes\_10_FormularioEstadoCuentaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\_10_FormularioEstadoCuentaClientes.Designer.cs">
+      <DependentUpon>_10_FormularioEstadoCuentaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\_1_FormularioConsultaClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\_1_FormularioConsultaClientes.Designer.cs">
+      <DependentUpon>_1_FormularioConsultaClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\_2_FormularioClientesABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\_2_FormularioClientesABM.Designer.cs">
+      <DependentUpon>_2_FormularioClientesABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes\_5_FormularioLookUpClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clientes\_5_FormularioLookUpClientes.Designer.cs">
+      <DependentUpon>_5_FormularioLookUpClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Credito\_12_FormularioRefinanciacionCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Credito\_12_FormularioRefinanciacionCredito.Designer.cs">
+      <DependentUpon>_12_FormularioRefinanciacionCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Credito\_4_FormularioCreditoABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Credito\_4_FormularioCreditoABM.Designer.cs">
+      <DependentUpon>_4_FormularioCreditoABM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Credito\_3_FormularioConsultaCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Credito\_3_FormularioConsultaCredito.Designer.cs">
+      <DependentUpon>_3_FormularioConsultaCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Credito\_6_FormularioCreditoTipoTransaccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Credito\_6_FormularioCreditoTipoTransaccion.Designer.cs">
+      <DependentUpon>_6_FormularioCreditoTipoTransaccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recibos\_11_FormularioConsultaRecibos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recibos\_11_FormularioConsultaRecibos.Designer.cs">
+      <DependentUpon>_11_FormularioConsultaRecibos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recibos\_7_FormularioConsultaRecibosCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recibos\_7_FormularioConsultaRecibosCredito.Designer.cs">
+      <DependentUpon>_7_FormularioConsultaRecibosCredito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recibos\_8_FormularioCompletarRecibo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recibos\_8_FormularioCompletarRecibo.Designer.cs">
+      <DependentUpon>_8_FormularioCompletarRecibo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recibos\_9_FormularioVerRecibo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recibos\_9_FormularioVerRecibo.Designer.cs">
+      <DependentUpon>_9_FormularioVerRecibo.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Presentacion.Base\Presentacion.Base.csproj">
+      <Project>{C036F3D8-5518-4D23-B08F-84D36B85E367}</Project>
+      <Name>Presentacion.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servicio.Core\Servicio.Core.csproj">
+      <Project>{8F15BD47-1360-43BE-BCCC-EF34C462002C}</Project>
+      <Name>Servicio.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Clientes\_10_FormularioEstadoCuentaClientes.resx">
+      <DependentUpon>_10_FormularioEstadoCuentaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\_1_FormularioConsultaClientes.resx">
+      <DependentUpon>_1_FormularioConsultaClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\_2_FormularioClientesABM.resx">
+      <DependentUpon>_2_FormularioClientesABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clientes\_5_FormularioLookUpClientes.resx">
+      <DependentUpon>_5_FormularioLookUpClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Credito\_12_FormularioRefinanciacionCredito.resx">
+      <DependentUpon>_12_FormularioRefinanciacionCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Credito\_3_FormularioConsultaCredito.resx">
+      <DependentUpon>_3_FormularioConsultaCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Credito\_4_FormularioCreditoABM.resx">
+      <DependentUpon>_4_FormularioCreditoABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Credito\_6_FormularioCreditoTipoTransaccion.resx">
+      <DependentUpon>_6_FormularioCreditoTipoTransaccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recibos\_11_FormularioConsultaRecibos.resx">
+      <DependentUpon>_11_FormularioConsultaRecibos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recibos\_7_FormularioConsultaRecibosCredito.resx">
+      <DependentUpon>_7_FormularioConsultaRecibosCredito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recibos\_8_FormularioCompletarRecibo.resx">
+      <DependentUpon>_8_FormularioCompletarRecibo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recibos\_9_FormularioVerRecibo.resx">
+      <DependentUpon>_9_FormularioVerRecibo.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

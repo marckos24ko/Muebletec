@@ -1,0 +1,12 @@
+A:\Trabajo\Financiera\DAL\bin\Debug\DAL.dll.config
+A:\Trabajo\Financiera\DAL\bin\Debug\DAL.dll
+A:\Trabajo\Financiera\DAL\bin\Debug\DAL.pdb
+A:\Trabajo\Financiera\DAL\bin\Debug\EntityFramework.dll
+A:\Trabajo\Financiera\DAL\bin\Debug\EntityFramework.SqlServer.dll
+A:\Trabajo\Financiera\DAL\bin\Debug\EntityFramework.xml
+A:\Trabajo\Financiera\DAL\bin\Debug\EntityFramework.SqlServer.xml
+A:\Trabajo\Financiera\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+A:\Trabajo\Financiera\DAL\obj\Debug\DAL.csproj.CopyComplete
+A:\Trabajo\Financiera\DAL\obj\Debug\DAL.dll
+A:\Trabajo\Financiera\DAL\obj\Debug\DAL.pdb
+A:\Trabajo\Financiera\DAL\obj\Debug\DAL.csprojAssemblyReference.cache

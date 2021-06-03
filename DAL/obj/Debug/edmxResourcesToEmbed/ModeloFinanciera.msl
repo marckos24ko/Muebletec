@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModeloFinancieraStoreContainer" CdmEntityContainer="ModeloFinancieraContainer">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloFinanciera.Cliente)">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Dni" ColumnName="Dni" />
+          <ScalarProperty Name="DireccionComercial" ColumnName="DireccionComercial" />
+          <ScalarProperty Name="DireccionParticular" ColumnName="DireccionParticular" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="NumeroCliente" ColumnName="NumeroCliente" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Creditos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloFinanciera.Credito)">
+        <MappingFragment StoreEntitySet="Creditos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
+          <ScalarProperty Name="FechaEmision" ColumnName="FechaEmision" />
+          <ScalarProperty Name="CantidadCuotas" ColumnName="CantidadCuotas" />
+          <ScalarProperty Name="MontoCuota" ColumnName="MontoCuota" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="TotalAbonado" ColumnName="TotalAbonado" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="FechaCancelacion" ColumnName="FechaCancelacion" />
+          <ScalarProperty Name="CodigoCredito" ColumnName="CodigoCredito" />
+          <ScalarProperty Name="Interes" ColumnName="Interes" />
+          <ScalarProperty Name="TipoCredito" ColumnName="TipoCredito" />
+          <ScalarProperty Name="Refinanciado" ColumnName="Refinanciado" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="CodigoCreditoBase" ColumnName="CodigoCreditoBase" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recibos">
+      <EntityTypeMapping TypeName="IsTypeOf(ModeloFinanciera.Recibo)">
+        <MappingFragment StoreEntitySet="Recibos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+          <ScalarProperty Name="NumeroCuota" ColumnName="NumeroCuota" />
+          <ScalarProperty Name="CuotasPendiente" ColumnName="CuotasPendiente" />
+          <ScalarProperty Name="MontoCuota" ColumnName="MontoCuota" />
+          <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+          <ScalarProperty Name="UltimoPago" ColumnName="UltimoPago" />
+          <ScalarProperty Name="Atraso" ColumnName="Atraso" />
+          <ScalarProperty Name="Pagado" ColumnName="Pagado" />
+          <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+          <ScalarProperty Name="Pago" ColumnName="Pago" />
+          <ScalarProperty Name="CreditoId" ColumnName="CreditoId" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

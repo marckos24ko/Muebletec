@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModeloFinanciera" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ModeloFinancieraContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="ModeloFinanciera.Cliente" />
+    <EntitySet Name="Creditos" EntityType="ModeloFinanciera.Credito" />
+    <EntitySet Name="Recibos" EntityType="ModeloFinanciera.Recibo" />
+    <AssociationSet Name="ClienteCredito" Association="ModeloFinanciera.ClienteCredito">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Credito" EntitySet="Creditos" />
+    </AssociationSet>
+    <AssociationSet Name="CreditoRecibo" Association="ModeloFinanciera.CreditoRecibo">
+      <End Role="Credito" EntitySet="Creditos" />
+      <End Role="Recibo" EntitySet="Recibos" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteRecibo" Association="ModeloFinanciera.ClienteRecibo">
+      <End Role="Cliente" EntitySet="Clientes" />
+      <End Role="Recibo" EntitySet="Recibos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" />
+    <Property Name="Apellido" Type="String" Nullable="false" />
+    <Property Name="Dni" Type="Int32" Nullable="false" />
+    <Property Name="DireccionComercial" Type="String" Nullable="false" />
+    <Property Name="DireccionParticular" Type="String" Nullable="false" />
+    <Property Name="Telefono" Type="String" Nullable="false" />
+    <Property Name="Celular" Type="String" Nullable="false" />
+    <Property Name="NumeroCliente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Credito" Relationship="ModeloFinanciera.ClienteCredito" FromRole="Cliente" ToRole="Credito" />
+    <NavigationProperty Name="Recibo" Relationship="ModeloFinanciera.ClienteRecibo" FromRole="Cliente" ToRole="Recibo" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Credito">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Monto" Type="Decimal" Nullable="false" />
+    <Property Name="FechaEmision" Type="DateTime" Nullable="false" />
+    <Property Name="CantidadCuotas" Type="Int32" Nullable="false" />
+    <Property Name="MontoCuota" Type="Decimal" Nullable="false" />
+    <Property Name="Estado" Type="String" Nullable="false" />
+    <Property Name="TotalAbonado" Type="Decimal" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="ModeloFinanciera.ClienteCredito" FromRole="Credito" ToRole="Cliente" />
+    <Property Name="ClienteId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Recibo" Relationship="ModeloFinanciera.CreditoRecibo" FromRole="Credito" ToRole="Recibo" />
+    <Property Name="FechaCancelacion" Type="DateTime" Nullable="false" />
+    <Property Name="CodigoCredito" Type="Int32" Nullable="false" />
+    <Property Name="Interes" Type="Int32" Nullable="true" />
+    <Property Name="TipoCredito" Type="String" Nullable="false" />
+    <Property Name="Refinanciado" Type="Boolean" Nullable="true" />
+    <Property Name="Extension" Type="Boolean" Nullable="true" />
+    <Property Name="CodigoCreditoBase" Type="Int32" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Recibo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Numero" Type="Int32" Nullable="false" />
+    <Property Name="MontoCredito" Type="Decimal" Nullable="false" />
+    <Property Name="NumeroCuota" Type="Int32" Nullable="false" />
+    <Property Name="CuotasPendiente" Type="Int32" Nullable="false" />
+    <Property Name="MontoCuota" Type="Decimal" Nullable="false" />
+    <Property Name="Saldo" Type="Decimal" Nullable="false" />
+    <Property Name="UltimoPago" Type="String" Nullable="false" />
+    <Property Name="Atraso" Type="Decimal" Nullable="false" />
+    <Property Name="Pagado" Type="Decimal" Nullable="false" />
+    <Property Name="FechaPago" Type="DateTime" Nullable="false" />
+    <Property Name="Pago" Type="Decimal" Nullable="false" />
+    <NavigationProperty Name="Credito" Relationship="ModeloFinanciera.CreditoRecibo" FromRole="Recibo" ToRole="Credito" />
+    <Property Name="CreditoId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="ModeloFinanciera.ClienteRecibo" FromRole="Recibo" ToRole="Cliente" />
+    <Property Name="ClienteId" Type="Int64" Nullable="false" />
+    <Property Name="Estado" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="ClienteCredito">
+    <End Type="ModeloFinanciera.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="ModeloFinanciera.Credito" Role="Credito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Credito">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CreditoRecibo">
+    <End Type="ModeloFinanciera.Credito" Role="Credito" Multiplicity="1" />
+    <End Type="ModeloFinanciera.Recibo" Role="Recibo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Credito">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recibo">
+        <PropertyRef Name="CreditoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteRecibo">
+    <End Type="ModeloFinanciera.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="ModeloFinanciera.Recibo" Role="Recibo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recibo">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
