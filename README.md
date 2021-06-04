@@ -5,4 +5,4 @@ Para probar el instalador, descargue el Instalador.rar, extraer el archivo y seg
 
 La aplicacion fue desarrolada en codigo C#, Programacion Orientada a Objetos, programacion en capas, con base de datos local.
 
-MUEBELTEC © 2020 Todos los derechos reservados. Version 1.0
+MUEBELTEC © 2021 Todos los derechos reservados. Version 1.0
