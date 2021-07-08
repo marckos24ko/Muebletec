@@ -136,7 +136,8 @@ namespace Servicio.Core.Cliente
                     Telefono = cliente.Telefono,
                     Celular = cliente.Celular,
                     DireccionComercial = cliente.DireccionComercial,
-                    DireccionParticular = cliente.DireccionParticular
+                    DireccionParticular = cliente.DireccionParticular,
+                    Estado = cliente.Estado
 
                 };
             }

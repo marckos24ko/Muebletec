@@ -39,3 +39,4 @@ A:\Repositorios\Muebletec\Presentacion.Base\obj\Debug\Presentacion.Base.csproj.C
 A:\Repositorios\Muebletec\Presentacion.Base\obj\Debug\Presentacion.Base.csproj.CopyComplete
 A:\Repositorios\Muebletec\Presentacion.Base\obj\Debug\Presentacion.Base.dll
 A:\Repositorios\Muebletec\Presentacion.Base\obj\Debug\Presentacion.Base.pdb
+A:\Repositorios\Muebletec\Presentacion.Base\obj\Debug\Presentacion.Base.csproj.AssemblyReference.cache

@@ -41,6 +41,8 @@ namespace Presentacion.Core.Recibos
             txtPago.KeyPress += Validacion.NoSimbolos;
             txtPago.KeyPress += Validacion.NoInyeccion;
 
+            dtpFechaPago.Value = DateTime.Now;
+
             CargarDatos();
             realizoAlgunaOperacion = false;
         }

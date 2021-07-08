@@ -11,6 +11,7 @@ namespace Presentacion.Core.Clientes
 
         private readonly IClienteServicio _clienteServicio;
         private long? _clienteId;
+        private ClienteDto _clienteSeleccionado;
 
 
         public _2_FormularioClientesABM(string _tipoOperacion, long? _entidadId)
@@ -161,6 +162,8 @@ namespace Presentacion.Core.Clientes
         {
             try
             {
+                _clienteSeleccionado = _clienteServicio.obtenerPorId(_clienteId.Value);
+
                 _clienteServicio.Modificar(new ClienteDto
                 {
                     Id = entidadId.Value,
@@ -170,7 +173,8 @@ namespace Presentacion.Core.Clientes
                     DireccionComercial = txtDireccionComercial.Text,
                     DireccionParticular = txtDireccionParticular.Text,
                     Telefono = txtTelefono.Text,
-                    Celular = txtCelular.Text
+                    Celular = txtCelular.Text,
+                    Estado = _clienteSeleccionado.Estado
                 });
 
                 Mensaje.Mostrar("Los datos se Modificaron Correctamente.", Mensaje.Tipo.Informacion);

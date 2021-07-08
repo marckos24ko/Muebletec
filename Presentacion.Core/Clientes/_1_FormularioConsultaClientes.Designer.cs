@@ -57,10 +57,6 @@
             this.btnRefinanciar.FlatAppearance.BorderSize = 0;
             this.btnRefinanciar.Location = new System.Drawing.Point(958, 326);
             // 
-            // lblTituloRefinanciacion
-            // 
-            this.lblTituloRefinanciacion.Size = new System.Drawing.Size(1200, 33);
-            // 
             // btnRecibosRefinanciar
             // 
             this.btnRecibosRefinanciar.FlatAppearance.BorderSize = 0;
