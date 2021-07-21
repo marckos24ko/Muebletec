@@ -138,7 +138,7 @@
             // 
             this.lblNumeroCuota.AutoSize = true;
             this.lblNumeroCuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroCuota.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblNumeroCuota.ForeColor = System.Drawing.Color.DimGray;
             this.lblNumeroCuota.Location = new System.Drawing.Point(315, 104);
             this.lblNumeroCuota.Name = "lblNumeroCuota";
             this.lblNumeroCuota.Size = new System.Drawing.Size(74, 16);
@@ -160,7 +160,7 @@
             // 
             this.lblCuotasPendientes.AutoSize = true;
             this.lblCuotasPendientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCuotasPendientes.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblCuotasPendientes.ForeColor = System.Drawing.Color.DimGray;
             this.lblCuotasPendientes.Location = new System.Drawing.Point(349, 120);
             this.lblCuotasPendientes.Name = "lblCuotasPendientes";
             this.lblCuotasPendientes.Size = new System.Drawing.Size(74, 16);
@@ -182,7 +182,7 @@
             // 
             this.lblMontoCuota.AutoSize = true;
             this.lblMontoCuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMontoCuota.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblMontoCuota.ForeColor = System.Drawing.Color.DimGray;
             this.lblMontoCuota.Location = new System.Drawing.Point(295, 136);
             this.lblMontoCuota.Name = "lblMontoCuota";
             this.lblMontoCuota.Size = new System.Drawing.Size(74, 16);
@@ -204,7 +204,7 @@
             // 
             this.lblCliente.AutoSize = true;
             this.lblCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCliente.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblCliente.ForeColor = System.Drawing.Color.DimGray;
             this.lblCliente.Location = new System.Drawing.Point(80, 160);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(140, 16);
@@ -226,7 +226,7 @@
             // 
             this.lblDni.AutoSize = true;
             this.lblDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDni.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblDni.ForeColor = System.Drawing.Color.DimGray;
             this.lblDni.Location = new System.Drawing.Point(50, 176);
             this.lblDni.Name = "lblDni";
             this.lblDni.Size = new System.Drawing.Size(74, 16);
@@ -270,7 +270,7 @@
             // 
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTelefono.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblTelefono.ForeColor = System.Drawing.Color.DimGray;
             this.lblTelefono.Location = new System.Drawing.Point(110, 224);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(74, 16);
@@ -281,7 +281,7 @@
             // 
             this.lblCelular.AutoSize = true;
             this.lblCelular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCelular.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblCelular.ForeColor = System.Drawing.Color.DimGray;
             this.lblCelular.Location = new System.Drawing.Point(327, 224);
             this.lblCelular.Name = "lblCelular";
             this.lblCelular.Size = new System.Drawing.Size(74, 16);
@@ -358,7 +358,7 @@
             // 
             this.lblAtraso.AutoSize = true;
             this.lblAtraso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAtraso.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblAtraso.ForeColor = System.Drawing.Color.DimGray;
             this.lblAtraso.Location = new System.Drawing.Point(349, 268);
             this.lblAtraso.Name = "lblAtraso";
             this.lblAtraso.Size = new System.Drawing.Size(57, 13);
@@ -369,7 +369,7 @@
             // 
             this.lblUltimoPago.AutoSize = true;
             this.lblUltimoPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUltimoPago.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblUltimoPago.ForeColor = System.Drawing.Color.DimGray;
             this.lblUltimoPago.Location = new System.Drawing.Point(229, 268);
             this.lblUltimoPago.Name = "lblUltimoPago";
             this.lblUltimoPago.Size = new System.Drawing.Size(81, 12);
@@ -380,7 +380,7 @@
             // 
             this.lblSaldo.AutoSize = true;
             this.lblSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaldo.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblSaldo.ForeColor = System.Drawing.Color.DimGray;
             this.lblSaldo.Location = new System.Drawing.Point(162, 268);
             this.lblSaldo.Name = "lblSaldo";
             this.lblSaldo.Size = new System.Drawing.Size(48, 13);
@@ -391,7 +391,7 @@
             // 
             this.lblPagado.AutoSize = true;
             this.lblPagado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPagado.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblPagado.ForeColor = System.Drawing.Color.DimGray;
             this.lblPagado.Location = new System.Drawing.Point(87, 268);
             this.lblPagado.Name = "lblPagado";
             this.lblPagado.Size = new System.Drawing.Size(58, 13);
@@ -402,7 +402,7 @@
             // 
             this.lblCredito.AutoSize = true;
             this.lblCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCredito.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblCredito.ForeColor = System.Drawing.Color.DimGray;
             this.lblCredito.Location = new System.Drawing.Point(12, 268);
             this.lblCredito.Name = "lblCredito";
             this.lblCredito.Size = new System.Drawing.Size(62, 13);
@@ -413,7 +413,7 @@
             // 
             this.lblDireccionParticular.AutoSize = true;
             this.lblDireccionParticular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDireccionParticular.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblDireccionParticular.ForeColor = System.Drawing.Color.DimGray;
             this.lblDireccionParticular.Location = new System.Drawing.Point(211, 208);
             this.lblDireccionParticular.Name = "lblDireccionParticular";
             this.lblDireccionParticular.Size = new System.Drawing.Size(90, 16);
@@ -424,7 +424,7 @@
             // 
             this.lblDireccionComercial.AutoSize = true;
             this.lblDireccionComercial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDireccionComercial.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblDireccionComercial.ForeColor = System.Drawing.Color.DimGray;
             this.lblDireccionComercial.Location = new System.Drawing.Point(198, 192);
             this.lblDireccionComercial.Name = "lblDireccionComercial";
             this.lblDireccionComercial.Size = new System.Drawing.Size(90, 16);
@@ -511,7 +511,7 @@
             // 
             this.lblFechaCancelacion.AutoSize = true;
             this.lblFechaCancelacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaCancelacion.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblFechaCancelacion.ForeColor = System.Drawing.Color.DimGray;
             this.lblFechaCancelacion.Location = new System.Drawing.Point(236, 329);
             this.lblFechaCancelacion.Name = "lblFechaCancelacion";
             this.lblFechaCancelacion.Size = new System.Drawing.Size(113, 16);
@@ -576,6 +576,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lblCampoObligatorio);
             this.Controls.Add(this.pnlBarraBotones);
+            this.ForeColor = System.Drawing.Color.DimGray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximumSize = new System.Drawing.Size(443, 435);
             this.MinimumSize = new System.Drawing.Size(443, 435);

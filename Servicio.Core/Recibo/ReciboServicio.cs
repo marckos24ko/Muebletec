@@ -1,4 +1,5 @@
 ﻿using DAL;
+using Presentacion.Base.Varios;
 using Servicio.Core.Recibo.Dto;
 using System;
 using System.Collections.Generic;
@@ -216,9 +217,9 @@ namespace Servicio.Core.Recibo
                 int.TryParse(cadenaBuscar, out codigo);
 
                 var reciboBuscar = listaRecibosSemanaActual
-                    .Where(x => x.Numero == codigo
+                    .Where(x => x.Estado == Constante.EstadoRecibo.Impago && (x.Numero == codigo
                            || x.Cliente.Apellido.Contains(cadenaBuscar)
-                           || x.Cliente.Nombre.Contains(cadenaBuscar)).ToList();
+                           || x.Cliente.Nombre.Contains(cadenaBuscar))).ToList();
 
                 return reciboBuscar.Select(x => new ReciboDto()
                 {
