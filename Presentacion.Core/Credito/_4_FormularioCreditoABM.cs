@@ -626,27 +626,66 @@ namespace Presentacion.Core.Credito
 
                 _CreditoServicio.Modificar(creditoModificar);
 
-                var recibos = _reciboServicio.ObtenerPorCredito(entidadId, string.Empty);
+                lista = _reciboServicio.ObtenerPorCredito(entidadId.Value, string.Empty).ToList(); //probar desde aqui
 
-                var _dias = 7;
-
-                var _fechaPago = new DateTime();
-
-                _fechaPago = dtpEmision.Value.AddDays(_dias);
-
-                foreach (var item in recibos)
+                foreach (var item in lista)
                 {
-                    item.FechaPago = _fechaPago;
-                    item.MontoCredito = monto;
-                    item.MontoCuota = valorCuota;
-                    item.ClienteId = creditoModificar.ClienteId;
+                    _reciboServicio.Eliminar(item.Id);
+                }
 
-                    _reciboServicio.Modificar(item);
+                for (int i = 1; i <= (int)nudCuotas.Value; i++)
+                {
+                    var _dias = 7 * i;
 
-                    _dias += 7;
+                    var _fechaPago = new DateTime();
 
                     _fechaPago = dtpEmision.Value.AddDays(_dias);
+
+                    var reciboNuevo = new ReciboDto
+                    {
+                        Numero = _reciboServicio.ObtenerSiguienteCodigo(),
+                        MontoCredito = creditoModificar.Monto,
+                        NumeroCuota = i,
+                        CuotasPendiente = (int)nudCuotas.Value - i,
+                        MontoCuota = valorCuota,
+                        Saldo = creditoModificar.Monto,
+                        UltimoPago = " Completar",
+                        Atraso = 0m,
+                        Pagado = 0m,
+                        FechaPago = _fechaPago,
+                        Pago = 0m,
+                        Estado = Constante.EstadoRecibo.Impago,
+                        CreditoId = creditoModificar.Id,
+                        ClienteId = _cliente.Id,
+                        CodigoCredito = creditoModificar.CodigoCredito
+                    };
+
+                    _reciboServicio.Insertar(reciboNuevo);
                 }
+
+                // hasta aqui
+
+                //var recibos = _reciboServicio.ObtenerPorCredito(entidadId, string.Empty);
+
+                //var _dias = 7;
+
+                //var _fechaPago = new DateTime();
+
+                //_fechaPago = dtpEmision.Value.AddDays(_dias);
+
+                //foreach (var item in recibos)
+                //{
+                //    item.FechaPago = _fechaPago;
+                //    item.MontoCredito = monto;
+                //    item.MontoCuota = valorCuota;
+                //    item.ClienteId = creditoModificar.ClienteId;
+
+                //    _reciboServicio.Modificar(item);
+
+                //    _dias += 7;
+
+                //    _fechaPago = dtpEmision.Value.AddDays(_dias);
+                //}
 
                 Mensaje.Mostrar("Los datos se Modificaron Correctamente.", Mensaje.Tipo.Informacion);
 
