@@ -40,6 +40,8 @@ namespace Presentacion.Core.Credito
 
         private int? valorInteres;
 
+        private decimal valorMonto;
+
 
 
         public _4_FormularioCreditoABM(string _tipoOperacion, string _tipoTransaccion, long? _entidadId)
@@ -172,12 +174,12 @@ namespace Presentacion.Core.Credito
                     break;
             }
 
+
             if (tipoTransaccion == Constante.TipoCredito.Efecitvo)
             {
                 if (!string.IsNullOrEmpty(txtMonto.Text) && nudCuotas.Value >= 1)
                 {
-                    txtMonto.Text = (credito.Monto - ((credito.Interes * credito.Monto) / (100 + credito.Interes))).ToString(); //probar
-
+                  
                     switch (nudCuotas.Value)
                     {
                         case 5m:
@@ -239,6 +241,10 @@ namespace Presentacion.Core.Credito
                             interesEfectivo = 72;
                             break;
                     }
+
+                    valorMonto = credito.Monto - ((interesEfectivo * credito.Monto) / (100 + interesEfectivo)); //probar
+                    valorMonto = decimal.Round(valorMonto, 0);
+                    txtMonto.Text = valorMonto.ToString();
                 }
 
                 else
@@ -253,11 +259,11 @@ namespace Presentacion.Core.Credito
                 valorCuota = !string.IsNullOrEmpty(txtMonto.Text) && nudCuotas.Value >= 1 ? decimal.Parse(txtMonto.Text) /
                 nudCuotas.Value : 0m;
                 monto = !string.IsNullOrEmpty(txtMonto.Text) ? decimal.Parse(txtMonto.Text) : 0m;
+                monto = decimal.Round(monto, 0);
                 txtMonto.Text = credito.Monto.ToString(); //probar
             }
 
             valorCuota = decimal.Round(valorCuota, 2);
-            monto = decimal.Round(monto, 2);
 
         }
 
@@ -480,7 +486,7 @@ namespace Presentacion.Core.Credito
             }
 
             valorCuota = decimal.Round(valorCuota, 2);
-            monto = decimal.Round(monto, 2);
+            monto = decimal.Round(monto, 0);
 
             txtPrecio.Text = valorCuota.ToString();
         }
@@ -587,7 +593,7 @@ namespace Presentacion.Core.Credito
 
             valorCuota = decimal.Round(valorCuota, 2);
 
-            monto = decimal.Round(monto, 2);
+            monto = decimal.Round(monto, 0);
 
             txtPrecio.Text = valorCuota.ToString();
 
@@ -633,7 +639,7 @@ namespace Presentacion.Core.Credito
                     item.FechaPago = _fechaPago;
                     item.MontoCredito = monto;
                     item.MontoCuota = valorCuota;
-                    item.ClienteId = creditoModificar.Id;
+                    item.ClienteId = creditoModificar.ClienteId;
 
                     _reciboServicio.Modificar(item);
 
