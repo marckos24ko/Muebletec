@@ -38,6 +38,10 @@ namespace Presentacion.Core.Credito
 
         private int interesEfectivo = 30;
 
+        private int? valorInteres;
+
+
+
         public _4_FormularioCreditoABM(string _tipoOperacion, string _tipoTransaccion, long? _entidadId)
                : base(_tipoOperacion, _entidadId)
         {
@@ -131,11 +135,11 @@ namespace Presentacion.Core.Credito
             var credito = _CreditoServicio.obtenerPorId(_entidadId.Value);
             _cliente = _clienteServicio.obtenerPorId(credito.ClienteId);
             tipoTransaccion = credito.TipoCredito;
+            valorInteres = credito.Interes;
 
             txtCodigo.Text = credito.CodigoCredito.ToString();
             txtCliente.Text = credito.ApyNomCliente;
             dtpEmision.Value = credito.FechaEmision;
-            txtMonto.Text = credito.Monto.ToString();
             nudCuotas.Value = credito.CantidadCuotas;
             txtPrecio.Text = credito.MontoCuota.ToString();
             dtpCancelacion.Value = credito.FechaCancelacion;
@@ -167,7 +171,94 @@ namespace Presentacion.Core.Credito
                     lblInteres6.Text = "Interes 72%";
                     break;
             }
-            
+
+            if (tipoTransaccion == Constante.TipoCredito.Efecitvo)
+            {
+                if (!string.IsNullOrEmpty(txtMonto.Text) && nudCuotas.Value >= 1)
+                {
+                    txtMonto.Text = (credito.Monto - ((credito.Interes * credito.Monto) / (100 + credito.Interes))).ToString(); //probar
+
+                    switch (nudCuotas.Value)
+                    {
+                        case 5m:
+                            valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 30) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
+
+                            monto = decimal.Parse(txtMonto.Text) + (decimal.Parse(txtMonto.Text) * 30) / 100;
+
+                            interesEfectivo = 30;
+ 
+                            break;
+                        case 6m:
+                            valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 36) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
+
+                            monto = decimal.Parse(txtMonto.Text) + (decimal.Parse(txtMonto.Text) * 36) / 100;
+
+                            interesEfectivo = 36;
+
+                            break;
+                        case 7m:
+                            valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 42) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
+
+                            monto = decimal.Parse(txtMonto.Text) + (decimal.Parse(txtMonto.Text) * 42) / 100;
+
+                            interesEfectivo = 42;
+                            break;
+                        case 8m:
+                            valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 48) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
+
+                            monto = decimal.Parse(txtMonto.Text) + (decimal.Parse(txtMonto.Text) * 48) / 100;
+
+                            interesEfectivo = 48;
+                            break;
+                        case 9m:
+                            valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 54) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
+
+                            monto = decimal.Parse(txtMonto.Text) + (decimal.Parse(txtMonto.Text) * 54) / 100;
+
+                            interesEfectivo = 54;
+                            break;
+                        case 10m:
+                            valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 60) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
+
+                            monto = decimal.Parse(txtMonto.Text) + (decimal.Parse(txtMonto.Text) * 60) / 100;
+
+                            interesEfectivo = 60;
+                            break;
+                        case 11m:
+                            valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 66) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
+
+                            monto = decimal.Parse(txtMonto.Text) + (decimal.Parse(txtMonto.Text) * 66) / 100;
+
+                            interesEfectivo = 66;
+                            break;
+                        case 12m:
+                            valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 72) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
+
+                            monto = decimal.Parse(txtMonto.Text) + (decimal.Parse(txtMonto.Text) * 72) / 100;
+
+                            interesEfectivo = 72;
+                            break;
+                    }
+                }
+
+                else
+                {
+                    valorCuota = 0m;
+                }
+
+            }
+
+            if (tipoTransaccion == Constante.TipoCredito.Mueble)
+            {
+                valorCuota = !string.IsNullOrEmpty(txtMonto.Text) && nudCuotas.Value >= 1 ? decimal.Parse(txtMonto.Text) /
+                nudCuotas.Value : 0m;
+                monto = !string.IsNullOrEmpty(txtMonto.Text) ? decimal.Parse(txtMonto.Text) : 0m;
+                txtMonto.Text = credito.Monto.ToString(); //probar
+            }
+
+            valorCuota = decimal.Round(valorCuota, 2);
+            monto = decimal.Round(monto, 2);
+
         }
 
         public override void LimpiarDatos(object obj)
@@ -286,7 +377,8 @@ namespace Presentacion.Core.Credito
                         Pago = 0m,
                         Estado = Constante.EstadoRecibo.Impago,
                         CreditoId = credito.Id,
-                        ClienteId = _cliente.Id
+                        ClienteId = _cliente.Id,
+                        CodigoCredito = credito.CodigoCredito
                     };
 
                     _reciboServicio.Insertar(reciboNuevo);
@@ -413,6 +505,7 @@ namespace Presentacion.Core.Credito
 
                             lblInteres6.Text = "Interes 30%";
                             break;
+
                         case 6m:
                             valorCuota = ((decimal.Parse(txtMonto.Text) / nudCuotas.Value) * 36) / 100 + (decimal.Parse(txtMonto.Text) / nudCuotas.Value);
 
@@ -538,6 +631,9 @@ namespace Presentacion.Core.Credito
                 foreach (var item in recibos)
                 {
                     item.FechaPago = _fechaPago;
+                    item.MontoCredito = monto;
+                    item.MontoCuota = valorCuota;
+                    item.ClienteId = creditoModificar.Id;
 
                     _reciboServicio.Modificar(item);
 

@@ -29,6 +29,7 @@ namespace DAL
         public long CreditoId { get; set; }
         public long ClienteId { get; set; }
         public string Estado { get; set; }
+        public int CodigoCredito { get; set; }
     
         public virtual Credito Credito { get; set; }
         public virtual Cliente Cliente { get; set; }

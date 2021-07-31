@@ -57,7 +57,7 @@ namespace Servicio.Core.Recibo
                 reciboNuevo.CreditoId = dto.CreditoId;
                 reciboNuevo.ClienteId = dto.ClienteId;
                 reciboNuevo.Estado = dto.Estado;
-
+                reciboNuevo.CodigoCredito = dto.CodigoCredito;
 
                 context.Recibos.Add(reciboNuevo);
                 context.SaveChanges();
@@ -77,6 +77,9 @@ namespace Servicio.Core.Recibo
                 reciboModificar.Saldo = dto.Saldo;
                 reciboModificar.UltimoPago = dto.UltimoPago;
                 reciboModificar.Estado = dto.Estado;
+                reciboModificar.MontoCredito = dto.MontoCredito;
+                reciboModificar.MontoCuota = dto.MontoCuota;
+                reciboModificar.ClienteId = dto.ClienteId;
 
                 context.SaveChanges();
             }
@@ -120,7 +123,8 @@ namespace Servicio.Core.Recibo
                     ApyNomCliente = x.Cliente.Apellido + " " + x.Cliente.Nombre,
                     ClienteId = x.ClienteId,
                     CreditoId = x.CreditoId,
-                    Estado = x.Estado
+                    Estado = x.Estado,
+                    CodigoCredito = x.CodigoCredito
 
 
                 }).ToList();

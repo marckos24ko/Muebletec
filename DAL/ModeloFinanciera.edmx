@@ -76,6 +76,7 @@
     <Property Name="CreditoId" Type="bigint" Nullable="false" />
     <Property Name="ClienteId" Type="bigint" Nullable="false" />
     <Property Name="Estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CodigoCredito" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="ClienteCredito">
     <End Role="Cliente" Type="ModeloFinanciera.Store.Clientes" Multiplicity="1" />
@@ -194,6 +195,7 @@
           <NavigationProperty Name="Cliente" Relationship="ModeloFinanciera.ClienteRecibo" FromRole="Recibo" ToRole="Cliente" />
           <Property Name="ClienteId" Type="Int64" Nullable="false" />
           <Property Name="Estado" Type="String" Nullable="false" />
+          <Property Name="CodigoCredito" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="ClienteCredito">
           <End Type="ModeloFinanciera.Cliente" Role="Cliente" Multiplicity="1" />
@@ -292,6 +294,7 @@
           <ScalarProperty Name="CreditoId" ColumnName="CreditoId" />
           <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="CodigoCredito" ColumnName="CodigoCredito" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -21,4 +21,3 @@ A:\Repositorios\Muebletec\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 A:\Repositorios\Muebletec\DAL\obj\Debug\DAL.csproj.CopyComplete
 A:\Repositorios\Muebletec\DAL\obj\Debug\DAL.dll
 A:\Repositorios\Muebletec\DAL\obj\Debug\DAL.pdb
-A:\Repositorios\Muebletec\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache

@@ -314,6 +314,10 @@ namespace Presentacion.Core.Recibos
                 e.Graphics.DrawString("Codigo: " + cliente.NumeroCliente, Font, Brushes.Black, new RectangleF(680, y, ancho + 300, 20));
                 e.Graphics.DrawString("Dni: " + cliente.Dni, Font, Brushes.Black, new RectangleF(20, y += 20, ancho, 20));
                 e.Graphics.DrawString("Dni: " + cliente.Dni, Font, Brushes.Black, new RectangleF(440, y, ancho, 20));
+                //probar
+                e.Graphics.DrawString("Codigo Credito: " + item.CodigoCredito, Font, Brushes.Black, new RectangleF(260, y, ancho + 300, 20));
+                e.Graphics.DrawString("Codigo Credito: " + item.CodigoCredito, Font, Brushes.Black, new RectangleF(680, y, ancho + 300, 20));
+                // hasta aqui
                 e.Graphics.DrawString("Direccion Particular: " + cliente.DireccionParticular, Font, Brushes.Black, new RectangleF(20, y += 20, ancho + 100, 20));
                 e.Graphics.DrawString("Direccion Particular: " + cliente.DireccionParticular, Font, Brushes.Black, new RectangleF(440, y, ancho + 100, 20));
                 e.Graphics.DrawString("Direccion Comercial: " + cliente.DireccionComercial, Font, Brushes.Black, new RectangleF(20, y += 20, ancho + 100, 20));
