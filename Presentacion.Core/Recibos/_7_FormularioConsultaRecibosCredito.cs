@@ -53,17 +53,30 @@ namespace Presentacion.Core.Recibos
             this.lblCancelacion.Font = new Font("Microsoft Sans Serif", 12, FontStyle.Bold);
 
             this.lblCancelacion.ForeColor = credito.FechaCancelacion.Date >= System.DateTime.Now.Date ?
-                                            _credito.Extension == true ? _credito.TotalAbonado == _credito.Monto ?  Color.Green : Color.Blue :
-                                            _credito.TotalAbonado == _credito.Monto ? Color.Green : Color.DarkGray :
-                                            _credito.Extension == true ? _credito.TotalAbonado == _credito.Monto ? Color.Green : Color.Red : Color.Red ;
-            
+                                           _credito.Extension == true ? _credito.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.Blue :
+                                           _credito.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.DarkGray :
+                                           _credito.Extension == true ? _credito.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.Red : Color.Red;
+
             this.lblInfoCredito.Text = credito.FechaCancelacion.Date >= System.DateTime.Now.Date ?
-                                            _credito.TotalAbonado == _credito.Monto ? "Credito Abonado Completo" : "Credito Abonado Incompleto" :
-                                            _credito.TotalAbonado == _credito.Monto ? "Credito Abonado Completo" : "Credito Abonado Incompleto";
+                                            _credito.Estado == Constante.EstadoRecibo.Pagado ? "Credito Abonado Completo" : "Credito Abonado Incompleto" :
+                                            _credito.Estado == Constante.EstadoRecibo.Pagado ? "Credito Abonado Completo" : "Credito Abonado Incompleto";
 
             this.lblInfoCredito.ForeColor = credito.FechaCancelacion.Date >= System.DateTime.Now.Date ?
-                                            _credito.TotalAbonado == _credito.Monto ? Color.Green : Color.DarkGray :
-                                            _credito.TotalAbonado == _credito.Monto ? Color.Green : Color.Red;
+                                            _credito.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.DarkGray :
+                                            _credito.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.Red;
+
+            //this.lblCancelacion.ForeColor = credito.FechaCancelacion.Date >= System.DateTime.Now.Date ?
+            //                                _credito.Extension == true ? _credito.TotalAbonado >= _credito.Monto ?  Color.Green : Color.Blue :
+            //                                _credito.TotalAbonado >= _credito.Monto ? Color.Green : Color.DarkGray :
+            //                                _credito.Extension == true ? _credito.TotalAbonado >= _credito.Monto ? Color.Green : Color.Red : Color.Red ;
+
+            //this.lblInfoCredito.Text = credito.FechaCancelacion.Date >= System.DateTime.Now.Date ?
+            //                                _credito.TotalAbonado >= _credito.Monto ? "Credito Abonado Completo" : "Credito Abonado Incompleto" :
+            //                                _credito.TotalAbonado >= _credito.Monto ? "Credito Abonado Completo" : "Credito Abonado Incompleto";
+
+            //this.lblInfoCredito.ForeColor = credito.FechaCancelacion.Date >= System.DateTime.Now.Date ?
+            //                                _credito.TotalAbonado >= _credito.Monto ? Color.Green : Color.DarkGray :
+            //                                _credito.TotalAbonado >= _credito.Monto ? Color.Green : Color.Red;
 
             if (_credito.FechaCancelacion < System.DateTime.Now)
             {
@@ -85,17 +98,30 @@ namespace Presentacion.Core.Recibos
             var creditoACtualizado = _creditoServicio.obtenerPorId(credito.Id);
 
             this.lblCancelacion.ForeColor = creditoACtualizado.FechaCancelacion.Date >= System.DateTime.Now.Date ?
-                                            creditoACtualizado.Extension == true ? creditoACtualizado.TotalAbonado == creditoACtualizado.Monto ? Color.Green : Color.Blue :
-                                            creditoACtualizado.TotalAbonado == creditoACtualizado.Monto ? Color.Green : Color.DarkGray :
-                                            creditoACtualizado.Extension == true ? creditoACtualizado.TotalAbonado == creditoACtualizado.Monto ? Color.Green : Color.Red : Color.Red;
+                                            creditoACtualizado.Extension == true ? creditoACtualizado.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.Blue :
+                                            creditoACtualizado.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.DarkGray :
+                                            creditoACtualizado.Extension == true ? creditoACtualizado.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.Red : Color.Red;
 
             this.lblInfoCredito.Text = creditoACtualizado.FechaCancelacion.Date >= System.DateTime.Now.Date ?
-                                       creditoACtualizado.TotalAbonado == creditoACtualizado.Monto ? "Credito Abonado Completo" : "Credito Abonado Incompleto" :
-                                       creditoACtualizado.TotalAbonado == creditoACtualizado.Monto ? "Credito Abonado Completo" : "Credito Abonado Incompleto";
+                                      creditoACtualizado.Estado == Constante.EstadoRecibo.Pagado ? "Credito Abonado Completo" : "Credito Abonado Incompleto" :
+                                      creditoACtualizado.Estado == Constante.EstadoRecibo.Pagado ? "Credito Abonado Completo" : "Credito Abonado Incompleto";
 
             this.lblInfoCredito.ForeColor = creditoACtualizado.FechaCancelacion.Date >= System.DateTime.Now.Date ?
-                                            creditoACtualizado.TotalAbonado == creditoACtualizado.Monto ? Color.Green : Color.DarkGray :
-                                            creditoACtualizado.TotalAbonado == creditoACtualizado.Monto ? Color.Green : Color.Red;
+                                            creditoACtualizado.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.DarkGray :
+                                            creditoACtualizado.Estado == Constante.EstadoRecibo.Pagado ? Color.Green : Color.Red;
+
+            //this.lblCancelacion.ForeColor = creditoACtualizado.FechaCancelacion.Date >= System.DateTime.Now.Date ?
+            //                                creditoACtualizado.Extension == true ? creditoACtualizado.TotalAbonado >= creditoACtualizado.Monto ? Color.Green : Color.Blue :
+            //                                creditoACtualizado.TotalAbonado >= creditoACtualizado.Monto ? Color.Green : Color.DarkGray :
+            //                                creditoACtualizado.Extension == true ? creditoACtualizado.TotalAbonado >= creditoACtualizado.Monto ? Color.Green : Color.Red : Color.Red;
+
+            //this.lblInfoCredito.Text = creditoACtualizado.FechaCancelacion.Date >= System.DateTime.Now.Date ?
+            //                           creditoACtualizado.TotalAbonado >= creditoACtualizado.Monto ? "Credito Abonado Completo" : "Credito Abonado Incompleto" :
+            //                           creditoACtualizado.TotalAbonado >= creditoACtualizado.Monto ? "Credito Abonado Completo" : "Credito Abonado Incompleto";
+
+            //this.lblInfoCredito.ForeColor = creditoACtualizado.FechaCancelacion.Date >= System.DateTime.Now.Date ?
+            //                                creditoACtualizado.TotalAbonado >= creditoACtualizado.Monto ? Color.Green : Color.DarkGray :
+            //                                creditoACtualizado.TotalAbonado >= creditoACtualizado.Monto ? Color.Green : Color.Red;
         }
 
         private void FormatearGrilla(DataGridView dgvGriila)

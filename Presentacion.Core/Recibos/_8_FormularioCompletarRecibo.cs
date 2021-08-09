@@ -437,6 +437,7 @@ namespace Presentacion.Core.Recibos
 
                 }
 
+                var bandera = true;
                 var _lista = _reciboServicio.ObtenerPorCredito(_credito.Id, string.Empty).ToList();
                 _totalAbonado = 0m;
 
@@ -444,10 +445,14 @@ namespace Presentacion.Core.Recibos
                 foreach (var Item in _lista)
                 {
                     _totalAbonado += Item.Pago;
+                    if (Item.Estado != Constante.EstadoRecibo.Pagado)
+                    {
+                        bandera = false;
+                    }
                 }
 
                 _credito.TotalAbonado = _totalAbonado;
-                _credito.Estado = _credito.Monto == _credito.TotalAbonado ? Constante.EstadoCredito.Pagado : Constante.EstadoCredito.PagadoParcial;
+                _credito.Estado = bandera == true ? Constante.EstadoCredito.Pagado : Constante.EstadoCredito.PagadoParcial; // probar
 
                 _creditoServicio.Modificar(_credito);
 
