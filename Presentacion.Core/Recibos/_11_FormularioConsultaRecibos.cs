@@ -34,6 +34,8 @@ namespace Presentacion.Core.Recibos
 
         //variables para impresion
         private List<ReciboDto> lista;
+        private List<ReciboDto> listaReversa;
+        private string _fechaPago;
         private ReciboDto _recibo;
         private ReciboDto _reciboAnterior;
         private CreditoDto _creditoImprimir;
@@ -107,13 +109,18 @@ namespace Presentacion.Core.Recibos
             dgvGrilla.Columns["MontoCuota"].Width = 50;
             dgvGrilla.Columns["MontoCuota"].HeaderText = @"Monto Cuota";
             dgvGrilla.Columns["MontoCuota"].DefaultCellStyle.Format = "C2";
-            dgvGrilla.Columns["MontoCuota"].DisplayIndex = 3;
+            dgvGrilla.Columns["MontoCuota"].DisplayIndex = 4;
 
             dgvGrilla.Columns["FechaPago"].Visible = true;
             dgvGrilla.Columns["FechaPago"].Width = 100;
             dgvGrilla.Columns["FechaPago"].HeaderText = @"Fecha Pago";
             dgvGrilla.Columns["FechaPago"].DefaultCellStyle.Format = "dd/MM/yyyy";
             dgvGrilla.Columns["FechaPago"].DisplayIndex = 5;
+
+            dgvGrilla.Columns["CodigoCredito"].Visible = true;
+            dgvGrilla.Columns["CodigoCredito"].Width = 100;
+            dgvGrilla.Columns["CodigoCredito"].HeaderText = @"Codigo Credito";
+            dgvGrilla.Columns["CodigoCredito"].DisplayIndex = 6;
         }
 
         private decimal RetornarTotal(string cadenaBuscar)
@@ -135,6 +142,11 @@ namespace Presentacion.Core.Recibos
 
             _creditoImprimir = _creditoServicio.obtenerPorId(_recibo.CreditoId);
             lista = _reciboServicio.ObtenerPorCredito(_recibo.CreditoId, string.Empty).ToList();
+            listaReversa = _reciboServicio.ObtenerPorCredito(_recibo.CreditoId, string.Empty).ToList();
+            _pagado = 0m;
+            _saldo = 0m;
+            _atraso = 0m;
+
 
             foreach (var recibo in lista)
             {
@@ -182,7 +194,36 @@ namespace Presentacion.Core.Recibos
                 }
             }
 
-            _saldo = _recibo.NumeroCuota > 1 ? _reciboAnterior.Saldo : 0m; // saldo del recibo anterior
+            listaReversa.Reverse(); // probar desde aqui
+
+            foreach (var item in listaReversa)
+            {
+                if (_recibo.NumeroCuota == 1)
+                {
+                    _fechaPago = "--";
+                    break;
+                }
+
+                if (item.NumeroCuota < _recibo.NumeroCuota)
+                {
+                    if (item.Pago > 0)
+                    {
+                        _fechaPago = item.FechaPago.Date.ToShortDateString()
+                                     + " " + item.Pago.ToString("c2");
+
+                        break;
+                    }
+                    else
+                    {
+                        _fechaPago = "--";
+                    }
+
+
+                }
+            }
+
+            // _saldo = _recibo.NumeroCuota > 1 ? _reciboAnterior.Saldo : 0m; // saldo del recibo anterior
+            _saldo = _recibo.MontoCredito - _pagado;
 
         }
 
@@ -318,8 +359,7 @@ namespace Presentacion.Core.Recibos
 
                 if (item.NumeroCuota > 1)
                 {
-                    var ultPago = _reciboAnterior.Pago > 0m ? _reciboAnterior.FechaPago.Date.ToShortDateString()
-                                     + " " + _reciboAnterior.Pago.ToString("c2") : "---";
+                    var ultPago = _fechaPago;
 
                     e.Graphics.DrawString(ultPago, Font, Brushes.Black, new RectangleF(230, y, ancho, 20));
                     e.Graphics.DrawString(ultPago, Font, Brushes.Black, new RectangleF(650, y, ancho, 20));
@@ -350,8 +390,8 @@ namespace Presentacion.Core.Recibos
                 e.Graphics.DrawString("Pago: $", Font, Brushes.Black, new RectangleF(700, y, ancho, 20));
                 //salto de linea
 
-                e.Graphics.DrawString("Firma Vendedor:", Font, Brushes.Black, new RectangleF(20, y += 40, ancho, 20));
-                e.Graphics.DrawString("Firma Vendedor:", Font, Brushes.Black, new RectangleF(440, y, ancho, 20));
+                e.Graphics.DrawString("Firma Cobrador:", Font, Brushes.Black, new RectangleF(20, y += 40, ancho, 20));
+                e.Graphics.DrawString("Firma Cobrador:", Font, Brushes.Black, new RectangleF(440, y, ancho, 20));
                 //salto de linea
 
                 e.Graphics.DrawString("CONSERVAR EL COMPROBANTE", fontTextoFinal, Brushes.Black, new RectangleF(100, y += 40, ancho, 20));
@@ -527,8 +567,7 @@ namespace Presentacion.Core.Recibos
 
                 if (item.NumeroCuota > 1)
                 {
-                    var ultPago = _reciboAnterior.Pago > 0m ? _reciboAnterior.FechaPago.Date.ToShortDateString()
-                                     + " " + _reciboAnterior.Pago.ToString("c2") : "---";
+                    var ultPago = _fechaPago;
 
                     e.Graphics.DrawString(ultPago, Font, Brushes.Black, new RectangleF(230, y, ancho, 20));
                     e.Graphics.DrawString(ultPago, Font, Brushes.Black, new RectangleF(650, y, ancho, 20));
@@ -559,8 +598,8 @@ namespace Presentacion.Core.Recibos
                 e.Graphics.DrawString("Pago: $", Font, Brushes.Black, new RectangleF(700, y, ancho, 20));
                 //salto de linea
 
-                e.Graphics.DrawString("Firma Vendedor:", Font, Brushes.Black, new RectangleF(20, y += 40, ancho, 20));
-                e.Graphics.DrawString("Firma Vendedor:", Font, Brushes.Black, new RectangleF(440, y, ancho, 20));
+                e.Graphics.DrawString("Firma Cobrador:", Font, Brushes.Black, new RectangleF(20, y += 40, ancho, 20));
+                e.Graphics.DrawString("Firma Cobrador:", Font, Brushes.Black, new RectangleF(440, y, ancho, 20));
                 //salto de linea
 
                 e.Graphics.DrawString("CONSERVAR EL COMPROBANTE", fontTextoFinal, Brushes.Black, new RectangleF(100, y += 40, ancho, 20));

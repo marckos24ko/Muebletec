@@ -39,5 +39,7 @@ namespace Servicio.Core.Recibo.Dto
 
         public string ApyNomCliente { get; set; }
 
+        public int CodigoCredito { get; set; }
+
     }
 }

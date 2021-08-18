@@ -28,5 +28,7 @@ namespace Servicio.Core.Recibo
         int ObtenerSiguienteCodigo();
 
         bool VerificarSiExiste(long? id, int codigo);
+
+        int ObtenerCodigoCredito(long creditoId);
     }
 }

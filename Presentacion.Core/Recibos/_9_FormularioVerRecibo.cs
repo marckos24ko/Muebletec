@@ -22,6 +22,7 @@ namespace Presentacion.Core.Recibos
         private decimal _pagado = 0m;
         private decimal _saldo;
         private decimal _atraso = 0m;
+        private string _fechaPago;
 
         public _9_FormularioVerRecibo(ReciboDto recibo)
         {
@@ -88,7 +89,36 @@ namespace Presentacion.Core.Recibos
                 }
             }
 
-            _saldo = _recibo.NumeroCuota > 1 ? _reciboAnterior.Saldo : 0m; // saldo del recibo anterior
+            lista.Reverse(); // probar desde aqui
+
+            foreach(var item in lista)
+            {
+                if (_recibo.NumeroCuota == 1)
+                {
+                    _fechaPago = "--";
+                    break;
+                }
+
+                if (item.NumeroCuota < _recibo.NumeroCuota)
+                {
+                    if (item.Pago > 0)
+                    {
+                        _fechaPago = item.FechaPago.Date.ToShortDateString()
+                                     + " " + item.Pago.ToString("c2");
+
+                        break;
+                    }
+                    else
+                    {
+                        _fechaPago = "--";
+                    }
+
+                 
+                }
+            }
+
+            // _saldo = _recibo.NumeroCuota > 1 ? _reciboAnterior.Saldo : 0m; // saldo del recibo anterior
+            _saldo = _recibo.MontoCredito - _pagado;
 
 
             lblNumeroCuota.Text = _recibo.NumeroCuota.ToString();
@@ -126,8 +156,7 @@ namespace Presentacion.Core.Recibos
             else
             {
                 lblSaldo.Text = _recibo.Estado != Constante.EstadoRecibo.Impago ? _recibo.Saldo.ToString("c2") : _saldo.ToString("c2");
-                lblUltimoPago.Text = _reciboAnterior.Pago > 0m ? _reciboAnterior.FechaPago.Date.ToShortDateString()
-                                     + " " + _reciboAnterior.Pago.ToString("c2") : "--";
+                lblUltimoPago.Text = _fechaPago;
                 lblAtraso.Text = _atraso.ToString("c2");
                 lblPagado.Text = _recibo.Estado != Constante.EstadoRecibo.Impago ? _recibo.Pagado.ToString("c2") : _pagado.ToString("c2");
             }

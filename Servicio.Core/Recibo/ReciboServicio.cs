@@ -82,6 +82,14 @@ namespace Servicio.Core.Recibo
             }
         }
 
+        public int ObtenerCodigoCredito(long creditoId)
+        {
+            using (var context = new ModeloFinancieraContainer ())
+            {
+                return context.Creditos.FirstOrDefault(x => x.Id == creditoId).CodigoCredito;
+            }
+        }
+
         public IEnumerable<ReciboDto> ObtenerPorCredito(long? idCredito, string cadenaBuscar)
         {
             using (var context = new ModeloFinancieraContainer())
@@ -212,7 +220,6 @@ namespace Servicio.Core.Recibo
                     }
                 }
 
-
                 var codigo = -1;
                 int.TryParse(cadenaBuscar, out codigo);
 
@@ -238,7 +245,8 @@ namespace Servicio.Core.Recibo
                     ApyNomCliente = x.Cliente.Apellido + " " + x.Cliente.Nombre,
                     ClienteId = x.ClienteId,
                     CreditoId = x.CreditoId,
-                    Estado = x.Estado
+                    Estado = x.Estado,
+                    CodigoCredito = ObtenerCodigoCredito(x.CreditoId)
 
 
                 }).ToList();

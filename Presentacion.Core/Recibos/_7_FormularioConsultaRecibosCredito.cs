@@ -111,6 +111,7 @@ namespace Presentacion.Core.Recibos
             dgvGrilla.Columns["Interes"].Visible = false;
             dgvGrilla.Columns["Pagado"].Visible = false;
             dgvGrilla.Columns["Numero"].Visible = false;
+            dgvGrilla.Columns["CodigoCredito"].Visible = false;
 
             dgvGrilla.Columns["NumeroCuota"].Visible = true;
             dgvGrilla.Columns["NumeroCuota"].Width = 50;
@@ -399,8 +400,8 @@ namespace Presentacion.Core.Recibos
                 e.Graphics.DrawString("Pago: $", Font, Brushes.Black, new RectangleF(700, y, ancho, 20));
                 //salto de linea
 
-                e.Graphics.DrawString("Firma Vendedor:", Font, Brushes.Black, new RectangleF(20, y += 40, ancho, 20));
-                e.Graphics.DrawString("Firma Vendedor:", Font, Brushes.Black, new RectangleF(440, y, ancho, 20));
+                e.Graphics.DrawString("Firma Cobrador:", Font, Brushes.Black, new RectangleF(20, y += 40, ancho, 20));
+                e.Graphics.DrawString("Firma Cobrador:", Font, Brushes.Black, new RectangleF(440, y, ancho, 20));
                 //salto de linea
 
                 e.Graphics.DrawString("CONSERVAR EL COMPROBANTE", fontTextoFinal, Brushes.Black, new RectangleF(100, y += 40, ancho, 20));

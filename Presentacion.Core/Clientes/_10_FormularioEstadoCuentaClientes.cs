@@ -267,6 +267,7 @@ namespace Presentacion.Core.Clientes
             dgvGrilla.Columns["Pagado"].Visible = false;
             dgvGrilla.Columns["MontoCredito"].Visible = false;
             dgvGrilla.Columns["MontoCuota"].Visible = false;
+            dgvGrilla.Columns["CodigoCredito"].Visible = false;
 
             dgvGrilla.Columns["NumeroCuota"].Visible = true;
             dgvGrilla.Columns["NumeroCuota"].Width = 100;
